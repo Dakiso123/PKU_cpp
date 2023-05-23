@@ -34,18 +34,50 @@ int base::get(){}
 #### 派生类的指针可以赋给基类指针
 
 通过基类指针调用基类和派生类中的同名虚函数时：
-
 ​	如果该指针指向一个基类对象，那么被调用是基类的虚函数
 
 ​	如果指向一个派生类对象，那么被调用的是派生类的虚函数
+i.e.,
+```cpp
+class Base{
+    public:
+    virtual void SomeVirtualFunction(){};
+};
+class Derived::public Base{
+    public:
+    virtual void SomeVirtualFunction(){};
+};
+int main(){
+	Derived derived;
+	Base* p = &derive;
+	p->SomeVirtualFunction(); //调用哪个虚函数取决于p指向哪种类型的对象(所以执行子类里的函数）
+ 	return 0;
+}
+```
 
 #### 派生类的对象可以赋给基类引用
 
 通过基类引用调用基类和派生类中同名虚函数时：
-
 ​	如果该引用引用的是一个基类对象，那么被调用是基类的虚函数
 
 ​	如果引用的是一个派生类对象，那么被调用的是派生类的虚函数
+i.e.,
+```cpp
+class Base{
+    public:
+    virtual void SomeVirtualFunction(){};
+};
+class Derived::public Base{
+    public:
+    virtual void SomeVirtualFunction(){};
+};
+int main(){
+	Derived derived;
+	Base& r = derive;
+	r.SomeVirtualFunction(); //调用哪个虚函数取决于r引用哪种类型的对象(所以执行子类里的函数）
+ 	return 0;
+}
+```
 
 ## 多态的实现原理
 
